@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Auth.Register
+namespace Application.Features.Auth.Command.Login
 {
-    internal class RegisterCommandValidator
+    public class LoginCommandResponse
     {
+        public string Token { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.Features.Auth.Register
+namespace Application.Features.Auth.Command.Register
 {
     public class RegisterCommandRequest : IRequest<Unit>
     {

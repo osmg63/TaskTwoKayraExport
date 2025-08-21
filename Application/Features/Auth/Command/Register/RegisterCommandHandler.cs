@@ -4,7 +4,7 @@ using MediatR;
 using Application.Common.Mappings;
 using AutoMapper;
 
-namespace Application.Features.Auth.Register
+namespace Application.Features.Auth.Command.Register
 {
     public class RegisterCommandHandler : IRequestHandler<RegisterCommandRequest, Unit>
     {
@@ -26,6 +26,6 @@ namespace Application.Features.Auth.Register
             return Unit.Value;
         }
 
-       
+
     }
 }

@@ -1,6 +1,10 @@
 ﻿
 using System.Reflection;
-using Application.Interfaces.UnitOfWork;
+using Application.Beheviors;
+using Application.Common.Mappings;
+using AutoMapper;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 namespace Application
 {
@@ -9,12 +13,10 @@ namespace Application
 
         public static void AddApplication(this IServiceCollection services) {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            services.AddAutoMapper(cfg => { }, Assembly.GetExecutingAssembly());
-
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationsBehevior<,>));
 
         }
-
-
-
     }
 }
