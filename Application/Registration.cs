@@ -2,6 +2,7 @@
 using System.Reflection;
 using Application.Beheviors;
 using Application.Common.Mappings;
+using Application.Exceptions;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
@@ -16,6 +17,9 @@ namespace Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationsBehevior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RedisCacheBehevior<,>));
+            services.AddTransient<ExceptionMiddleware>();
+
 
         }
     }

@@ -30,7 +30,7 @@ namespace Api.Controllers
             await _mediator.Send(request);
             return StatusCode(StatusCodes.Status201Created);
         }
-        [HttpPost("/Login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginCommandRequest request)
         {
           var data=  await _mediator.Send(request);

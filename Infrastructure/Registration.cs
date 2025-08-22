@@ -1,8 +1,10 @@
 ﻿
 using System.Text;
+using Application.Interfaces.RedisCache;
 using Application.Interfaces.Repository;
 using Application.Interfaces.Token;
 using Application.Interfaces.UnitOfWork;
+using Infrastructure.Infrastructure.RedisCache;
 using Infrastructure.Infrastructure.Token;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
@@ -26,6 +28,8 @@ namespace Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.Configure<TokenSettings>(configuration.GetSection("JWT"));
             services.AddScoped<ITokenService, TokenService>();
+            services.AddSingleton<IRedisCacheService, RedisCacheService>();
+            services.Configure<RedisCacheSettings>(configuration.GetSection("RedisCacheSettings"));
 
 
             services.AddAuthentication(opt =>

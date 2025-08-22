@@ -1,5 +1,6 @@
 
 using Application;
+using Application.Exceptions;
 using Infrastructure;
 using Microsoft.OpenApi.Models;
 
@@ -46,6 +47,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Logging.AddConsole();
 
 
 var app = builder.Build();
@@ -56,6 +58,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ExceptionMiddleware>();
+
 
 app.UseHttpsRedirection();
 

@@ -3,6 +3,7 @@ using Application.Features.Products.Command.UpdateProduct;
 using Application.Features.Products.Queries.GetAllProduct;
 using Application.Features.Products.Queries.GetProduct;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
